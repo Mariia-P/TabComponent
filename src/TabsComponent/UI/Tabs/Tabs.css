@@ -1,0 +1,17 @@
+.tabs-conteiner {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.tabs {
+    overflow: hidden;
+    min-height: 50px;
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
