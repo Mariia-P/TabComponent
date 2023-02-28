@@ -1,17 +1,27 @@
 import type { TabProps } from '../../types/tabsTypes';
 import { classNames } from '../../lib/classNames/classNames';
 import './Tab.css';
+import { useEffect, useRef } from 'react';
 
 const Tab = (props: TabProps) => {
     const {
         config: { label, titleContent, disabled },
         setSelectedTab,
         selectedTab,
+        focusedTab,
         activeClass,
         tabStyles,
         tabWrapperStyles,
         ...otherProps
     } = props;
+
+    const ref = useRef<HTMLButtonElement>(null);
+
+    useEffect(() => {
+        if (focusedTab && ref.current) {
+            ref.current.focus();
+        }
+    }, []);
 
     const onClickHandler = () => {
         setSelectedTab(label);
@@ -53,6 +63,7 @@ const Tab = (props: TabProps) => {
                 aria-selected={selectedTab}
                 type="button"
                 disabled={disabled}
+                ref={ref}
                 {...otherProps}
             >
                 {titleContent}

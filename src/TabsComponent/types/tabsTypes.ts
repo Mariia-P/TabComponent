@@ -12,15 +12,29 @@ export interface TabsStyles {
     tabWrapper?: StyleItem;
     tab?: StyleItem;
     tabPanel?: StyleItem;
+    slideButton?: StyleItem;
     activeClass?: string;
+    styledRightButton?: StyleItem;
+    styledLeftButton?: StyleItem;
 }
 
+export interface SliderConfig {
+    rightIcon: ReactNode;
+    leftIcon: ReactNode;
+}
+export interface OverflowConfig{
+    scrollable?: boolean;
+    swipeable?: boolean;
+    sliderable?: boolean | SliderConfig;
+}
 export interface TabsProps {
     tabs: TabsConfig[];
     onSelectedTab?: (label: string) => void;
     defaultTab?: string;
+    defaultFocusTab?: string;
     ariaLabel?: string;
     styles?: TabsStyles;
+    overflowBehavior?: OverflowConfig;
 }
 
 export interface TabsConfig extends TabConfig {
@@ -31,6 +45,7 @@ export interface TabProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     config: TabConfig;
     setSelectedTab: (label: string) => void;
     selectedTab: boolean;
+    focusedTab: boolean;
     activeClass?: string;
     tabStyles?: StyleItem;
     tabWrapperStyles?: StyleItem;

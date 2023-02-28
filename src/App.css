@@ -20,12 +20,20 @@
 
 .App .custom-tab  {
     font-family:  "Arial", sans-serif;
-    font-size: 15px;
-    background-color: rgb(234, 198, 231);
+    white-space: nowrap;
+    font-size: 1.8 rem;
+    background-color: rgb(248, 214, 161);
+    padding: 13px 20px;
+    border-radius: 30px;
+    border: 1px solid rgb(201, 169, 118);
     min-width: 150px;
 }
 .App .custom-list  {
     flex-grow: unset;
+}
+
+.App .custom-tab-box {
+    gap: 12px;
 }
 
 /* .App .custom-tab:hover {

@@ -1,6 +1,7 @@
 import React, { useState, useMemo, useCallback } from 'react';
 import './App.css';
 import { Tabs } from './TabsComponent';
+// import Swiper from './TabsComponent/UI/Swiper/Swiper';
 
 function App() {
     const [activeTab, setActiveTab] = useState('');
@@ -52,6 +53,21 @@ function App() {
                 panelContent: <p>Tab 7 content goes here.</p>,
                 titleContent: <p>Tab 7 title.</p>,
             },
+            {
+                label: 'Tab 8',
+                panelContent: <p>Tab 8 content goes here.</p>,
+                titleContent: <p>Tab 8 title.</p>,
+            },
+            {
+                label: 'Tab 9',
+                panelContent: <p>Tab 9 content goes here.</p>,
+                titleContent: <p>Tab 9 title.</p>,
+            },
+            {
+                label: 'Tab 10',
+                panelContent: <p>Tab 10 content goes here.</p>,
+                titleContent: <p>Tab 10 title.</p>,
+            },
         ],
         []
     );
@@ -61,11 +77,19 @@ function App() {
             tasbWrapper: { mainClass: 'test-container' },
             tab: { additionalClasses: ['custom-tab'] },
             tabWrapper: { additionalClasses: ['custom-list'] },
-            // activeClass: 'red',
+            activeClass: 'red',
         }),
         []
     );
 
+    const overflowConfig = useMemo(
+        () => ({
+            scrollable: true,
+            swipeable: true,
+            sliderable: true,
+        }),
+        []
+    );
     return (
         <div className="App">
             <div className="tabs-wrapper">
@@ -73,10 +97,12 @@ function App() {
                     tabs={tabs}
                     onSelectedTab={onSelectTab}
                     defaultTab="Tab 2"
-                    // styles={styles}
+                    defaultFocusTab="Tab 3"
+                    overflowBehavior={overflowConfig}
+                    styles={styles}
                 />
-                {/* <button onClick={onConterClick}>Click!</button>
-                <div>{counter}</div> */}
+                <button onClick={onConterClick}>Click!</button>
+                <div>{counter}</div>
             </div>
         </div>
     );
