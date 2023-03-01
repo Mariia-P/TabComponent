@@ -8,18 +8,22 @@ import './Scrollable.css';
 interface ScrollableProps {
     children?: ReactNode;
     overflowBehavior?: OverflowConfig;
-    styledWrapper?: StyleItem;
+    tabList?: StyleItem;
     styledLeftButton?: StyleItem;
     styledRightButton?: StyleItem;
+    rightIcon?: ReactNode;
+    leftIcon?: ReactNode;
 }
 
 const Scrollable = (props: ScrollableProps) => {
     const {
         children,
-        styledWrapper,
+        tabList,
         styledLeftButton,
         styledRightButton,
         overflowBehavior,
+        rightIcon,
+        leftIcon,
     } = props;
 
     const { scrollable, swipeable, sliderable } = overflowBehavior ?? {};
@@ -32,10 +36,10 @@ const Scrollable = (props: ScrollableProps) => {
     const btnRightRef = useRef<HTMLButtonElement>(null);
 
     const {
-        mainClass: wrapperMainClass,
-        mods: wrapperMods,
-        additionalClasses: wrapperAdditionalClasses,
-    } = styledWrapper ?? {};
+        mainClass: tabListMainClass,
+        mods: tabListMods,
+        additionalClasses: tabListAdditionalClasses,
+    } = tabList ?? {};
 
     const {
         mainClass: leftButtonMainClass,
@@ -50,7 +54,7 @@ const Scrollable = (props: ScrollableProps) => {
     } = styledRightButton ?? {};
 
     const modsWithDragClass: Record<string, boolean> = {
-        ...wrapperMods,
+        ...tabListMods,
         dragging: isDragging,
     };
 
@@ -94,6 +98,10 @@ const Scrollable = (props: ScrollableProps) => {
         handleIcons();
     };
 
+    const onMouseLeaveHandler = () => {
+        if(isDragging) setIsDragging(false);
+    }
+
     const handleIcons = () => {
         if (tabListRef.current) {
             const scrollValue = Math.round(tabListRef.current?.scrollLeft || 0);
@@ -117,7 +125,9 @@ const Scrollable = (props: ScrollableProps) => {
                 ? (tabListRef.current.scrollLeft += -tabWidth || -350)
                 : (tabListRef.current.scrollLeft += tabWidth || 350);
 
-            handleIcons();
+                setTimeout(() => {
+                    handleIcons();
+                }, 50);
         }
     };
 
@@ -128,6 +138,7 @@ const Scrollable = (props: ScrollableProps) => {
                 onMouseMove: onMouseMoveHandler,
                 onMouseDown: onMouseDownHandler,
                 onMouseUp: onMouseUpHandler,
+                onMouseLeave: onMouseLeaveHandler,
             })}
         >
             {sliderable && (
@@ -141,16 +152,16 @@ const Scrollable = (props: ScrollableProps) => {
                     )}
                     onClick={() => iconClickHandler('left')}
                 >
-                    <LeftIcon />
+                   {leftIcon || <LeftIcon />} 
                 </button>
             )}
             <div
                 ref={tabListRef}
                 role="tablist"
                 className={classNames(
-                    `${wrapperMainClass || 'scrollable'}`,
+                    `${tabListMainClass || 'scrollable'}`,
                     modsWithDragClass || {},
-                    wrapperAdditionalClasses || []
+                    tabListAdditionalClasses || []
                 )}
             >
                 {children}
@@ -166,7 +177,7 @@ const Scrollable = (props: ScrollableProps) => {
                     )}
                     onClick={() => iconClickHandler('right')}
                 >
-                    <RightIcon />
+                   {rightIcon ||  <RightIcon />}
                 </button>
             )}
         </div>

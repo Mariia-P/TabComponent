@@ -22,7 +22,7 @@ export interface SliderConfig {
     rightIcon: ReactNode;
     leftIcon: ReactNode;
 }
-export interface OverflowConfig{
+export interface OverflowConfig {
     scrollable?: boolean;
     swipeable?: boolean;
     sliderable?: boolean | SliderConfig;
@@ -35,6 +35,7 @@ export interface TabsProps {
     ariaLabel?: string;
     styles?: TabsStyles;
     overflowBehavior?: OverflowConfig;
+    icons?: { rightIcon: ReactNode; leftIcon: ReactNode };
 }
 
 export interface TabsConfig extends TabConfig {

@@ -25,7 +25,7 @@
 
 .tab:focus {
     outline: none;
-    background-color: #ecf2f7;
+    background-color: #bcc4cb;
 }
 .tab:hover:enabled {
     background-color: #c0d8f0;

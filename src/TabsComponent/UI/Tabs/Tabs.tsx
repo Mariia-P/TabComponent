@@ -16,6 +16,7 @@ const Tabs = memo((props: TabsProps) => {
         defaultFocusTab,
         ariaLabel,
         overflowBehavior,
+        icons,
     } = props;
 
     const {
@@ -67,8 +68,10 @@ const Tabs = memo((props: TabsProps) => {
                 <Scrollable
                     styledRightButton={styledRightButton}
                     styledLeftButton={styledLeftButton}
-                    styledWrapper={tabsWrapper}
+                    tabList={tabList}
                     overflowBehavior={overflowBehavior}
+                    rightIcon={icons?.rightIcon}
+                    leftIcon={icons?.leftIcon}
                 >
                     {tabItems}
                 </Scrollable>

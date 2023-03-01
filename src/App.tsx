@@ -1,7 +1,6 @@
 import React, { useState, useMemo, useCallback } from 'react';
 import './App.css';
 import { Tabs } from './TabsComponent';
-// import Swiper from './TabsComponent/UI/Swiper/Swiper';
 
 function App() {
     const [activeTab, setActiveTab] = useState('');
@@ -74,7 +73,7 @@ function App() {
 
     const styles = useMemo(
         () => ({
-            tasbWrapper: { mainClass: 'test-container' },
+            tabsWrapper: { mainClass: 'test-container' },
             tab: { additionalClasses: ['custom-tab'] },
             tabWrapper: { additionalClasses: ['custom-list'] },
             activeClass: 'red',
@@ -99,7 +98,7 @@ function App() {
                     defaultTab="Tab 2"
                     defaultFocusTab="Tab 3"
                     overflowBehavior={overflowConfig}
-                    styles={styles}
+                    // styles={styles}
                 />
                 <button onClick={onConterClick}>Click!</button>
                 <div>{counter}</div>
